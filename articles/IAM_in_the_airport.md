@@ -75,12 +75,12 @@ The AWS account root user can create IAM identities as the manager can hire peop
 ### IAM Users:  
 Airports are divided into landside and airside zones. The landside is subject to fewer special laws and is part of the public realm, while access to the airside zone is tightly controlled. The airside area includes all parts of the airport around the aircraft and the parts of the buildings that are restricted to staff.  
 Let's suppose that the manager hired some people to perform different jobs and gave them credentials(IAM identities) and different permissions to access different areas (Policies). For example, the sales agents are at the counter in contact with clients but will never enter the airside area; the baggage handlers on the other hand are allowed to enter the airside area to carry the luggage to the aircraft.  
-Well, in AWS is almost the same. An IAM user is an entity that you create in AWS to represent the person or application that uses it to interact with AWS. A user in AWS consists of a name and credentials that can access AWS in different ways depending on what services and resources it is allowed to use. When you create an IAM user, you grant it permissions by making it a member of a user group that has appropriate permission policies attached (recommended), or by directly attaching policies to the user.
-How the policies look like?
-To continue with are example, the policies are the job functions manual. When someone is hired, they receive a contract and a function manual specifying what functions they can perform and in the case of the airport, which places they can enter, right?
-well, policies are the same. We attach policies to identities or resources to define their permissions. That's it.
-Les define some policies for the baggage handlers, they **put** baggage to the baggage carousel device, they also **get** baggage from there to upload them to the plane. Additionaly they can remove suspicious baggage (**delete** it) and generate a **list** with all the baggage information, their destiny or current **location** etc.
-Ok, Let's suppose that every aircraft is an S3 bucket and the objets are the baggages from passengers that are uploaded to the aircraft. The person that can do this is the baggage handler, so we are goin to define a inline policy for this person.
+Well, in AWS is almost the same. An IAM user is an entity that you create in AWS to represent the person or application that uses it to interact with AWS. A user in AWS consists of a name and credentials that can access AWS in different ways depending on what services and resources it is allowed to use. When you create an IAM user, you grant it permissions by making it a member of a user group that has appropriate permission policies attached (recommended), or by directly attaching policies to the user.  
+**How the policies look like?**  
+To continue with our example, the policies are the job functions manual. When someone is hired, they receive a contract and a job manual specifying what functions they can perform and in the case of the airport, which places they can enter, right?  
+well, policies are the same. We attach policies to identities or resources to define their permissions. That's it.  
+Let's define some policies for the baggage handlers, they **put** baggage to the baggage carousel device, they also **get** baggage from there to upload them to the plane. Additionally, they can remove suspicious baggage (**delete** it) and generate a **list** with all the baggage information, their destiny or current **location**, etc.  
+Ok, Let's suppose that every aircraft is an S3 bucket and the objects are the baggage from passengers that are uploaded to the aircraft. The person that can do this is the baggage handler, so we are going to define a inline policy for this person.
 ```
 {
    "Version":"2012-10-17",
@@ -110,10 +110,8 @@ Ok, Let's suppose that every aircraft is an S3 bucket and the objets are the bag
 }
 ```
 
-s3:PutObject, s3:GetObject, and s3:DeleteObject permissions to the user, the policy also grants the s3:ListAllMyBuckets, s3:GetBucketLocation, and s3:ListBucket permissions. These are the additional permissions required by the console. Also, the s3:PutObjectAcl and the s3:GetObjectAcl actions are required to be able to copy, cut, and paste objects in the console
-
-That's it! know the baggage handle can do his job without problems.
-When you create an IAM user, you grant it permissions by directly attaching policies to the user or by making it a member of a user group that has appropriate permission policies attached (recommended). And because we have many baggage handlers we are going to see how IAM groups works.
+s3:PutObject, s3:GetObject, and s3:DeleteObject permissions to the user, the policy also grants the s3:ListAllMyBuckets, s3:GetBucketLocation, and s3:ListBucket permissions. These are the additional permissions required by the console. Also, the s3:PutObjectAcl and the s3:GetObjectAcl actions are required to be able to copy, cut, and paste objects in the console.  
+That's it! know the baggage handlers can do their job without problems. When you create an IAM user, you grant it permissions by directly attaching policies to the user or by making it a member of a user group that has appropriate permission policies attached (recommended). And because we have many baggage handlers we are going to see how IAM groups work.
 
 ### IAM Groups:  
 Do you know RFID cards? These are the cards that are used to grant access to restricted areas to the cardholder. So you can program which doors will open with that card.
