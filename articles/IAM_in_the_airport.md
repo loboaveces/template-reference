@@ -2,9 +2,9 @@
 
 ----
 
-# Title: {IAM users, roles, groups and roles explained in an airport}
-## Subtitle: {An analogy for cloud enthusiasts and travelers}
-## Author: {Loboaveces}
+# Title: IAM users, roles, groups and roles explained in an airport
+## Subtitle: An analogy for cloud enthusiasts and travelers
+## Author: Loboaveces
 ## Type: Explainer
 
 **Cloud Provider(s)**
@@ -46,11 +46,10 @@
 ----
 
 ## Introduction
-Hi, I'm Carlos, a Cloud enthusiast just like you. I'm a telecommunication Engineer with almost nine years of experience in IT, I started with bare metal Linux servers, Cisco network devices configuration and Data Centers cabling stuff, but in the way I was absorved by the Cloud world (thanks god!) and since then I've been discovering this fascinating world every day. currently I'm a DevOps Engineer and I define my self as a lifelong learner.
-I love to write, I write every day small pharaghaphs about different things just for fun, but my native language is spanish (Bolivia), so for me it's a challenge to write "well" in English and that is the most exiting part of this.
+Hi, I'm Carlos, a Cloud enthusiast just like you. I'm a Telecommunications Engineer with almost ten years of experience in IT, I started with bare-metal Linux servers, Cisco network devices configuration, and Data Centers cabling stuff, but in the way, I was absorbed by the Cloud world (thank god!) and since then I've been discovering this fascinating world every day. currently, I'm a DevOps Engineer and I define myself as a lifelong learner.
 
 ## The Topic
-This explainer is about AWS IAM basics, the main goal is to explain AWS IAM and how to define the policies related to them in an easy way, I'll use a real-world analogy so anyone who read this can understand.
+This explainer is about AWS IAM basics, the main goal is to explain AWS IAM and how to define the policies related to them in an easy way, I'll use a real-world analogy so anyone who reads this can understand.
 
 ## Your Explanation
 
@@ -58,18 +57,21 @@ This explainer is about AWS IAM basics, the main goal is to explain AWS IAM and 
 
 Imagine a really big airport, like Hartsfield–Jackson Airport in Atlanta (U.S) or Beijing International Airport (China) with hundreds of airline offices, a lot of flights arriving and leaving, employees doing their different jobs, and many people going around. Even if we don't know exactly how everything works in an airport, we can be sure that it works.  
 Well, to understand Identity access management (IAM) we can think of Amazon Web Services (AWS) as a big Airport with hundreds of services (airlines), traffic between services (flights), and many users with different roles taking advantage of cloud services (people).  
-![Airport](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3oypxe2occxlx053i6vh.jpg)  
+![Airport](https://res.cloudinary.com/practicaldev/image/fetch/s--QBL_V5re--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/o310lcw1l8qlg7f9kgee.jpg)  
 
-What I'm trying with this example, is to explain how IAM users, groups, and roles work, because I see many new developers struggling with these concepts. If you read this I hope that clarifies everything for you. Let me know in a comment how it was, and how it can improve.
+What I'm trying with this example, is to explain how IAM users, groups, and roles work and how to define yheir policies, because I see many developers struggling with these concepts.
 OK, let's do this!  
 I think that we've all been to the airport at least one time, right? Well, I don't know if you noticed but in airports, there is a complex access control system to keep individuals out of restricted areas and maintain the facilities secure, it is composed of a lot of people with different roles, scanners, cameras, and many other devices and equipment. All of them are there to maintain the security of the airport (infrastructure, airlines, and passengers)  
-Ok, we can say that Identity Access Management is the same, is the service that provides access control in AWS, so it controls all the access to AWS resources. Is important to say that IAM is not the only service that provides security, but is the most important. And is also composed of different elements, features, and tools.  
+Ok, we can say that Identity Access Management is the same, is the service that provides access control in AWS, so it controls all the access to AWS resources. Is important to say that IAM is not the only service that provides access control security, but is the most important. And is also composed of different elements, features, and tools.  
+The main concept on IAM is policies, you manage access in AWS by creating policies and attaching them to IAM identities (users, groups of users, or roles) or AWS resources. A policy is an object in AWS that, when associated with an identity or resource, defines their permissions. AWS evaluates these policies when an IAM principal (user or role) makes a request  
 ### The root user:  
 In an airport, airlines rent offices to operate and offer flights to their customers. There are big international airlines and also small airlines with local operations. (Just like the users of AWS) When an airline company wants to operate in the airport they sign a contract (terms of use) to use the airport services. Let's say that the contract is signed by the regional manager who represents the airline in that airport, We could say that he gets the office keys that allow him to access anywhere.  
 When you create an AWS account, you accept some terms and conditions for the service, and immediately you have access to all the services. This account is called the root account and with this account, you have all the permissions to create resources, assign new users and manage all your infrastructure and applications in AWS services.  
-Let's continue, the manager shouldn't do everything, right? he or she can't run an airline office by itself, there have to be a lot of people that work for the company. What he can do is hire more staff. There can be sales agents, operations agents, baggage handlers, flight dispatchers, administrative support staff, among others. In the end, the manager will only sit at his desk eating donuts like a boss. (I don't know if that's the case of a true manager but for this example it is).  
+Let's continue, the manager shouldn't do everything, right? he or she can't run an airline office by itself, there have to be a lot of people that work for the company. What he can do is hire more staff. There can be sales agents, operations agents, baggage handlers, flight dispatchers, administrative support staff, among others. In the end, the manager will only sit at his desk eating donuts like a boss. (I don't know if that's the case of a true airline manager but for this example it is).  
 When you first create an AWS account, you begin with a single sign-in identity that has complete access to all the services and resources in the account. This identity is called the AWS account root user. You can sign in as the root user using the email address and password that you used to create the account.  
 AWS strongly recommends that you do not use the root user for your everyday tasks, even the administrative ones. Instead, create IAM users and assign them different permissions to perform different tasks. Then securely lock away the root user credentials and use them to perform only a few account and service management tasks. Let that account rest eating donuts.  
+
+
 ### IAM Users:  
 Airports are divided into landside and airside zones. The landside is subject to fewer special laws and is part of the public realm, while access to the airside zone is tightly controlled. The airside area includes all parts of the airport around the aircraft and the parts of the buildings that are restricted to staff.  
 Let's suppose that the manager hired some people to perform different jobs and gave them credentials and different permissions to access different areas. For example, the sales agents are at the counter in contact with clients but will never enter the airside area; the baggage handlers on the other hand are allowed to enter the airside area to carry the luggage to the aircraft.  
