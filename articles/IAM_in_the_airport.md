@@ -70,13 +70,51 @@ When you create an AWS account, you accept some terms and conditions for the ser
 Let's continue, the manager shouldn't do everything, right? he or she can't run an airline office by itself, there have to be a lot of people that work for the company. What he can do is hire more staff. There can be sales agents, operations agents, baggage handlers, flight dispatchers, administrative support staff, among others. In the end, the manager will only sit at his desk eating donuts like a boss. (I don't know if that's the case of a true airline manager but for this example it is).  
 When you first create an AWS account, you begin with a single sign-in identity that has complete access to all the services and resources in the account. This identity is called the AWS account root user. You can sign in as the root user using the email address and password that you used to create the account.  
 AWS strongly recommends that you do not use the root user for your everyday tasks, even the administrative ones. Instead, create IAM users and assign them different permissions to perform different tasks. Then securely lock away the root user credentials and use them to perform only a few account and service management tasks. Let that account rest eating donuts.  
-
+The AWS account root user can create IAM identities as the manager can hire people. An IAM identity provides access to an AWS account, represents a user, and can be authenticated and then authorized to perform actions in AWS. Each IAM identity can be associated with one or more policies. Policies determine what actions a user, role, or member of a user group can perform, on which AWS resources, and under what conditions. Let's see this in detail:
 
 ### IAM Users:  
 Airports are divided into landside and airside zones. The landside is subject to fewer special laws and is part of the public realm, while access to the airside zone is tightly controlled. The airside area includes all parts of the airport around the aircraft and the parts of the buildings that are restricted to staff.  
-Let's suppose that the manager hired some people to perform different jobs and gave them credentials and different permissions to access different areas. For example, the sales agents are at the counter in contact with clients but will never enter the airside area; the baggage handlers on the other hand are allowed to enter the airside area to carry the luggage to the aircraft.  
-Well, in AWS is almost the same. An IAM user is an entity that you create in AWS to represent the person or application that uses it to interact with AWS. A user in AWS consists of a name and credentials that can access AWS in different ways depending on what services and resources it is allowed to use.  
-A brand new IAM user created using the AWS CLI or AWS API has no credentials of any kind. You must create the type of credentials for an IAM user based on the needs of your user.  
+Let's suppose that the manager hired some people to perform different jobs and gave them credentials(IAM identities) and different permissions to access different areas (Policies). For example, the sales agents are at the counter in contact with clients but will never enter the airside area; the baggage handlers on the other hand are allowed to enter the airside area to carry the luggage to the aircraft.  
+Well, in AWS is almost the same. An IAM user is an entity that you create in AWS to represent the person or application that uses it to interact with AWS. A user in AWS consists of a name and credentials that can access AWS in different ways depending on what services and resources it is allowed to use. When you create an IAM user, you grant it permissions by making it a member of a user group that has appropriate permission policies attached (recommended), or by directly attaching policies to the user.
+How the policies look like?
+To continue with are example, the policies are the job functions manual. When someone is hired, they receive a contract and a function manual specifying what functions they can perform and in the case of the airport, which places they can enter, right?
+well, policies are the same. We attach policies to identities or resources to define their permissions. That's it.
+Les define some policies for the baggage handlers, they **put** baggage to the baggage carousel device, they also **get** baggage from there to upload them to the plane. Additionaly they can remove suspicious baggage (**delete** it) and generate a **list** with all the baggage information, their destiny or current **location** etc.
+Ok, Let's suppose that every aircraft is an S3 bucket and the objets are the baggages from passengers that are uploaded to the aircraft. The person that can do this is the baggage handler, so we are goin to define a inline policy for this person.
+```
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Effect":"Allow",
+         "Action": "s3:ListAllMyBuckets",
+         "Resource":"*"
+      },
+      {
+         "Effect":"Allow",
+         "Action":["s3:ListBucket","s3:GetBucketLocation"],
+         "Resource":"arn:aws:s3:::awsexamplebucket1"
+      },
+      {
+         "Effect":"Allow",
+         "Action":[
+            "s3:PutObject",
+            "s3:PutObjectAcl",
+            "s3:GetObject",
+            "s3:GetObjectAcl",
+            "s3:DeleteObject"
+         ],
+         "Resource":"arn:aws:s3:::awsexamplebucket1/*"
+      }
+   ]
+}
+```
+
+s3:PutObject, s3:GetObject, and s3:DeleteObject permissions to the user, the policy also grants the s3:ListAllMyBuckets, s3:GetBucketLocation, and s3:ListBucket permissions. These are the additional permissions required by the console. Also, the s3:PutObjectAcl and the s3:GetObjectAcl actions are required to be able to copy, cut, and paste objects in the console
+
+That's it! know the baggage handle can do his job without problems.
+When you create an IAM user, you grant it permissions by directly attaching policies to the user or by making it a member of a user group that has appropriate permission policies attached (recommended). And because we have many baggage handlers we are going to see how IAM groups works.
+
 ### IAM Groups:  
 Do you know RFID cards? These are the cards that are used to grant access to restricted areas to the cardholder. So you can program which doors will open with that card.
 In this case, the manager decided to give the employees RFID cards of different colors depending on the access permissions that they need. For example, there is a group of ten people in charge of the maintenance of aircraft. All of them, who received the orange card, can access the same restricted areas in the airside zone.  
