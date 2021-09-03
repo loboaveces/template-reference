@@ -203,5 +203,5 @@ The read-only policy doesn't grant user permission for the CreateTrail, UpdateTr
 ## Conclusion
 
 This was just an introduction to AWS IAM service and policies in an easy way, I hope that everything it's clear now for you. If you want to learn further the best thing that I can recommend is to read the official AWS Documentation or other articles here IAM Pulse and try to understand them by your self, also try to get your hand on some demos, because that is the best way to learn.  
-Now, the next time you'll be at the airport, you'll know how it works ;)
+Now, the next time you'll be at the airport, you'll know how it works! ;)  
 Have a good day and keep learning.
