@@ -1,7 +1,7 @@
 ## Cooking IAM Policies  
 I'm not going to lie to you, this is not an article (I don't even know how this arrived here). This is a detailed recipe to make IAM policies. 
 Are you sure this is what you were looking for? well, let's go!  
-Did you ever eat a layer cake? I ask you this because the process of cooking an IAM policy is similar to that of layer cake. So, if you did not eat one, consider getting one after reading this just for academic purposes, of course.
+Did you ever eat a layer cake? I ask you this because the process of cooking an IAM policy is similar to that of layer cake. So, if you did not eat one or forgot the taste, consider getting one after reading this just for academic purposes, of course.
 [image of the cake]  
 
 To prepare an IAM policy we will divide the process into three main layers:  
