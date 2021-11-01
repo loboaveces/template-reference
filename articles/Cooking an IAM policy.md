@@ -76,7 +76,7 @@ To cook an IAM policy you must select which flavor will you use. There are three
 - Inline: Embedded directly into a user, group, or role. It's not recommended to use them but they are useful if you would like to maintain s strict one-to-one relationship between a policy and the principal entity where it is applied. 
 
 ## Now, let's prepare the ingredients:
-For this recipe we'll need:
+For this recipe we'll need:  
 ![IAM ingredients](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ng8mlzb1is60f4nr7l0d.png)  
   
 I know, I know... When you'll be in the market buying all this stuff, it can be a little overwhelming knowing how to choose the correct ingredients. But don't worry, I will explain to you the characteristics of these ingredients so you can make good shopping.  
