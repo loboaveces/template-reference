@@ -78,7 +78,7 @@ To cook an IAM policy you must select which flavor will you use. There are three
 ## Now, let's prepare the ingredients:
 For this recipe we'll need:
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gb06pq16iduphluwz7as.png)
-
+  
 I know, I know... When you'll be in the market buying all this stuff, it can be a little overwhelming knowing how to choose the correct ingredients. But don't worry, I will explain to you the characteristics of these ingredients so you can make good shopping.  
 - version: It specifies the language syntax rules that are to be used to process a policy. To use all of the available policy features, include the following Version:  
 ```
@@ -95,6 +95,18 @@ I know, I know... When you'll be in the market buying all this stuff, it can be 
 
 Now that we have all the ingredients that we need, let's start preparing the policy. In this case as a example, we will make an IAM policy that allows managing Amazon EC2 security groups associated with a specific virtual private cloud (VPC). This policy also provides the permissions necessary to complete this action on the console. 
 Do you remember that I told you that baking IAM policies is much similar to a layer cake preparation? well it is! "Statements" are the key. we can define one or multiple statements defined one by one, just like layers. For this case and to make our preparation example short but complete we will have two layers, that means two statemets that will allow us to achieve what we want.
+Step 1: Grab the version you got it and put it on the begining of the file.  
+Step 2: We will start with the first statement (layer) for this we need:  
+- 2.1 The Action you choosed, remember that each resource has it's own list of actions defined. (For example you can consult the actions available for EC2 here: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Operations.html
+- 2.2 Add the resource that will be coverd by this statement. If you want to apply it for all, you can put an "*".
+- 2.3 Finally add the effect, you can choose to allow or deny the action(s) for the choosed resourse.
+Step 3: Now we can add our second statement, the process is similar for all statements, but of course with the ingredients we choose.
+- 3.1 One more time we will choose the actions that we want from the list of available actions.
+- 3.2 Then we add the resource, in the previos statement we used "*", now we will use an specific resource by using its ARN (Amazon Resource Name).
+- 3.3 Then comes the effect, choose the effect (allow or deny) for this actions on the resource.
+- 3.4 In this case, and to have a complete example, we will use conditions when this statement has effect, in this case for an specific VPN.  
+
+And that's it! let's see how it looks:
 
 ```
 {
@@ -132,10 +144,5 @@ Do you remember that I told you that baking IAM policies is much similar to a la
 }
 ```
 
-what does the policy we created do?
+What do you think? do you dare to prepare this recipe? remember that it can be adapted according to what you need. Give it a try!
 
-Let's see this step by step:
-
-
-[ prepare a graphic)
-[ explain the graphic]
