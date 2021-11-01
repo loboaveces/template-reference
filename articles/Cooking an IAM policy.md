@@ -77,7 +77,7 @@ To cook an IAM policy you must select which flavor will you use. There are three
 
 ## Now, let's prepare the ingredients:
 For this recipe we'll need:
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/gb06pq16iduphluwz7as.png)
+![IAM ingredients](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ng8mlzb1is60f4nr7l0d.png)  
   
 I know, I know... When you'll be in the market buying all this stuff, it can be a little overwhelming knowing how to choose the correct ingredients. But don't worry, I will explain to you the characteristics of these ingredients so you can make good shopping.  
 - version: It specifies the language syntax rules that are to be used to process a policy. To use all of the available policy features, include the following Version:  
@@ -146,7 +146,7 @@ And that's it! Let's see how it looks:
 
 What do you think? Do you dare to prepare this recipe? Remember that it can be adapted according to your needs. Give it a try!
 Finally, I did this image with the recipe, so feel free to grab it. If you want you can save it, share it, or print it so you can have it on hand. 
-![IAM recipe](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zqjs6v6hwh3qs7wbdo3g.png)
+![IAM recipe](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zqjs6v6hwh3qs7wbdo3g.png)  
 
 ## Conclusion  
 
